@@ -301,6 +301,108 @@
         .column-card ul {
             padding-left: 20px;
         }
+        
+        .urgency-levels {
+            margin: 30px 0;
+        }
+        
+        .urgency-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .urgency-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .urgency-card.high {
+            border-top: 4px solid #dc3545;
+        }
+        
+        .urgency-card.medium {
+            border-top: 4px solid #ffc107;
+        }
+        
+        .urgency-card.low {
+            border-top: 4px solid #28a745;
+        }
+        
+        .urgency-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .urgency-card h4 {
+            color: #333;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .urgency-card p {
+            color: #666;
+            font-size: 0.95em;
+            margin: 0;
+        }
+        
+        .copy-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 15px 0;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+        
+        .copy-button:active {
+            transform: translateY(0);
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .template-clean {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 0.95em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        
+        .template-clean .field {
+            margin: 12px 0;
+        }
+        
+        .template-clean .field-label {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .template-clean .field-value {
+            color: #666;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -399,16 +501,16 @@
                 <div class="flow-step">
                     <div class="flow-number">4</div>
                     <div class="flow-content">
-                        <h4>Você é Incluído no Email</h4>
-                        <p>Quando um prestador responde positivamente, você é colocado em cópia e assume a negociação direta.</p>
+                        <h4>Advogado é Incluído no Email</h4>
+                        <p>Quando um prestador responde positivamente, o advogado solicitante é colocado em cópia e assume a negociação direta.</p>
                     </div>
                 </div>
                 
                 <div class="flow-step">
                     <div class="flow-number">5</div>
                     <div class="flow-content">
-                        <h4>Negociação Técnica (Sua Responsabilidade)</h4>
-                        <p>Você + Prestador + Financeiro (quando aplicável) definem:</p>
+                        <h4>Negociação Técnica (Responsabilidade do Jurídico)</h4>
+                        <p>Advogado + Prestador + Financeiro (quando aplicável) definem:</p>
                         <ul>
                             <li>Escopo técnico do serviço</li>
                             <li>Valores e condições comerciais</li>
@@ -422,7 +524,7 @@
                     <div class="flow-number">6</div>
                     <div class="flow-content">
                         <h4>Contratação e Encerramento</h4>
-                        <p>Quando você confirma a contratação, o status muda para <span class="status-badge status-concluida">Prestacao_contratada</span></p>
+                        <p>Quando o advogado confirma a contratação, o status muda para <span class="status-badge status-concluida">Prestacao_contratada</span></p>
                     </div>
                 </div>
                 
@@ -430,12 +532,12 @@
                     <div class="flow-number">7</div>
                     <div class="flow-content">
                         <h4>Avaliação Pós-Serviço</h4>
-                        <p>Após a conclusão, você receberá um email pedindo avaliação sobre:</p>
+                        <p>Após a conclusão, o advogado solicitante receberá um email pedindo avaliação sobre:</p>
                         <ul>
                             <li>Qualidade do serviço</li>
                             <li>Cumprimento de prazo</li>
                             <li>Adequação de valor</li>
-                            <li>Impacto financeiro percebido</li>
+                            <li>Impacto financeiro e percebido</li>
                         </ul>
                         <p>Essa avaliação alimenta decisões futuras de recontratação e potencial de parceria.</p>
                     </div>
@@ -449,32 +551,59 @@
                 <div class="card card-warning">
                     <h3>⚠️ Canal Oficial</h3>
                     <p><strong>Apenas solicitações via EMAIL são válidas.</strong></p>
-                    <p>Solicitações por outros canais (WhatsApp) não serão processadas.</p>
+                    <p>Solicitações por outros canais (Slack, WhatsApp, verbal) não serão processadas.</p>
+                </div>
+                
+                <div class="urgency-levels">
+                    <h3 style="display: flex; align-items: center; gap: 10px;">⚡ Níveis de Urgência</h3>
+                    <p style="margin-bottom: 20px;">Ao preencher o template, selecione o nível de urgência conforme o prazo da demanda:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <div class="urgency-card high">
+                            <div class="urgency-icon">🔴</div>
+                            <h4>Urgência Alta</h4>
+                            <p>Propostas com lead, prazos com clientes menores que 10 dias</p>
+                        </div>
+                        <div class="urgency-card medium">
+                            <div class="urgency-icon">🟡</div>
+                            <h4>Urgência Média</h4>
+                            <p>Prazos com clientes de 15 dias</p>
+                        </div>
+                        <div class="urgency-card low">
+                            <div class="urgency-icon">🟢</div>
+                            <h4>Urgência Baixa</h4>
+                            <p>Prazos com clientes maiores que 30 dias</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <h3>Template Obrigatório</h3>
                 <p>Copie e cole este template no <strong>corpo do email</strong> com todas as informações preenchidas:</p>
                 
-                <div class="template-box">
-<strong>Assunto:</strong> [NOVA DEMANDA - PARCERIAS] | [Tipo de Serviço] | [País]
+                <button class="copy-button" onclick="copyTemplate()">
+                    <span>📋</span>
+                    <span id="copyButtonText">Copiar Template</span>
+                </button>
+                
+                <div class="template-clean" id="emailTemplate">
+<div class="field"><span class="field-label">Assunto:</span> <span class="field-value">[NOVA DEMANDA - PARCERIAS] | [Tipo de Serviço] | [País]</span></div>
 
-<strong>Advogado Solicitante:</strong> [Seu nome]
+<div class="field"><span class="field-label">Advogado Solicitante:</span> <span class="field-value">[Seu nome]</span></div>
 
-<strong>Líder Solicitante:</strong> [Nome do líder]
+<div class="field"><span class="field-label">Líder Solicitante:</span> <span class="field-value">[Nome do líder]</span></div>
 
-<strong>Tipo de Serviço:</strong> [Ex: Due diligence, Registro de marca, etc]
+<div class="field"><span class="field-label">Tipo de Serviço:</span> <span class="field-value">[Ex: Due diligence, Registro de marca, etc]</span></div>
 
-<strong>País:</strong> [País onde o serviço será prestado]
+<div class="field"><span class="field-label">País:</span> <span class="field-value">[País onde o serviço será prestado]</span></div>
 
-<strong>Cidade (opcional):</strong> [Cidade específica, se aplicável]
+<div class="field"><span class="field-label">Cidade (opcional):</span> <span class="field-value">[Cidade específica, se aplicável]</span></div>
 
-<strong>Descrição da Demanda:</strong> [Descreva o contexto e o que precisa ser feito]
+<div class="field"><span class="field-label">Descrição da Demanda:</span> <span class="field-value">[Descreva o contexto e o que precisa ser feito]</span></div>
 
-<strong>Forma de Entrega (opcional):</strong> [Como você prefere receber o trabalho]
+<div class="field"><span class="field-label">Forma de Entrega (opcional):</span> <span class="field-value">[Como preferem receber o trabalho]</span></div>
 
-<strong>Prazo Solicitado:</strong> [Data ou prazo desejado]
+<div class="field"><span class="field-label">Prazo Solicitado:</span> <span class="field-value">[Data ou prazo desejado]</span></div>
 
-<strong>Urgência:</strong> [Alta / Média / Baixa]
+<div class="field"><span class="field-label">Urgência:</span> <span class="field-value">[Alta / Média / Baixa]</span></div>
                 </div>
                 
                 <div class="card card-warning">
@@ -591,9 +720,9 @@
                         <li>Acompanhar a execução do serviço</li>
                     </ul>
                     
-                    <p style="margin-top: 20px;"><strong>Após você ser incluído no email</strong>, a negociação passa a ser entre:</p>
+                    <p style="margin-top: 20px;"><strong>Após o advogado ser incluído no email</strong>, a negociação passa a ser entre:</p>
                     <ul>
-                        <li>Você (Advogado)</li>
+                        <li>Advogado Solicitante</li>
                         <li>O Prestador</li>
                         <li>Time Financeiro (quando aplicável)</li>
                     </ul>
@@ -615,6 +744,41 @@
             
             // Scroll para o topo
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function copyTemplate() {
+            const template = `Assunto: [NOVA DEMANDA - PARCERIAS] | [Tipo de Serviço] | [País]
+
+Advogado Solicitante: [Seu nome]
+
+Líder Solicitante: [Nome do líder]
+
+Tipo de Serviço: [Ex: Due diligence, Registro de marca, etc]
+
+País: [País onde o serviço será prestado]
+
+Cidade (opcional): [Cidade específica, se aplicável]
+
+Descrição da Demanda: [Descreva o contexto e o que precisa ser feito]
+
+Forma de Entrega (opcional): [Como preferem receber o trabalho]
+
+Prazo Solicitado: [Data ou prazo desejado]
+
+Urgência: [Alta / Média / Baixa]`;
+
+            navigator.clipboard.writeText(template).then(() => {
+                const button = document.querySelector('.copy-button');
+                const buttonText = document.getElementById('copyButtonText');
+                
+                button.classList.add('copied');
+                buttonText.textContent = '✅ Template Copiado!';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    buttonText.textContent = 'Copiar Template';
+                }, 2000);
+            });
         }
         
         // Mostra a primeira seção por padrão
